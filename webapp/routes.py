@@ -10,7 +10,7 @@ default_goal = 0
 def home():
     return render_template('home.html')
 
-@app.route('/register')
+@app.route('/register',  methods= ['GET'])
 def register():
     form = registrationForm(request.form)
     if form.validate_on_submit():
@@ -24,13 +24,9 @@ def register():
         return redirect(url_for('login'))
     return render_template('register.html', form=form)
 
-@app.route('/login', methods= ['GET', 'POST'])
+@app.route('/login', methods= ['GET'])
 def logIn():
     form = logInForm(request.form)
     #do something
 
     return render_template('login.html', form=form)
-
-
-if __name__ == '__main__':
-    app.run(debug=True)
